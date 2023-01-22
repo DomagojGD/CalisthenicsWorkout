@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ExercisesActivity"
+    android:background="@color/dark_mode_gray_background">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarExercises"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/dark_mode_gray_background"
+        app:titleTextColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarExercises"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <LinearLayout
+            android:id="@+id/llPushUps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_white_stroke_background"
+            android:layout_weight="0.2"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivPushUps"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_push_ups"
+                android:layout_weight="0.25"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PUSH UPS"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/audiowide"
+                android:textStyle="bold|italic"
+                android:gravity="center"
+                android:layout_weight="0.75"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llLegRaises"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_white_stroke_background"
+            android:layout_weight="0.2"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LEG RAISES"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/audiowide"
+                android:textStyle="bold|italic"
+                android:gravity="center"
+                android:layout_weight="0.75"/>
+
+            <ImageView
+                android:id="@+id/ivLegRaises"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_leg_raises"
+                android:layout_weight="0.25"
+                android:scaleType="fitXY"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llSquats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_white_stroke_background"
+            android:layout_weight="0.2"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivSquats"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_squats"
+                android:layout_weight="0.25"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SQUATS"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/audiowide"
+                android:textStyle="bold|italic"
+                android:gravity="center"
+                android:layout_weight="0.75"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llPullUps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_white_stroke_background"
+            android:layout_weight="0.2"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PULL UPS"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/audiowide"
+                android:textStyle="bold|italic"
+                android:gravity="center"
+                android:layout_weight="0.75"/>
+
+            <ImageView
+                android:id="@+id/ivPullUps"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_pull_ups"
+                android:layout_weight="0.25"
+                android:scaleType="fitXY"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llBridges"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_white_stroke_background"
+            android:layout_weight="0.2"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivBridges"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_bridges"
+                android:layout_weight="0.25"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BRIDGES"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/audiowide"
+                android:textStyle="bold|italic"
+                android:gravity="center"
+                android:layout_weight="0.75"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

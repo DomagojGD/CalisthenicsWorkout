@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.WorkoutsActivity"
+    android:background="@color/dark_mode_gray_background">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarWorkouts"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/dark_mode_gray_background"
+        app:titleTextColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/llSolidStartProgram"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/btn_gray_ripple_background"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarWorkouts"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Solid Start Program"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/audiowide"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 times a week"
+            android:textColor="@color/white"
+            android:fontFamily="@font/audiowide"
+            android:textSize="16sp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Day 1: Push Ups &amp; Leg Raises 2-3 sets"
+            android:textColor="@color/white"
+            android:fontFamily="@font/audiowide"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Day 2: Pull Ups &amp; Squats 2-3 sets"
+            android:textColor="@color/white"
+            android:fontFamily="@font/audiowide"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Day 3: Bridges 2-3 sets"
+            android:textColor="@color/white"
+            android:fontFamily="@font/audiowide"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ExerciseDescriptionActivity"
+    android:background="@color/dark_mode_gray_background">
+    
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarExerciseDescription"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/dark_mode_gray_background"
+        app:titleTextColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"/>
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbarExerciseDescription"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            
+            <ImageView
+                android:id="@+id/ivExercise"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_push_ups"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="10dp"
+                android:transitionName="transition_between_activities"/>
+
+            <TextView
+                android:id="@+id/tvExerciseTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PUSH UPS"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/audiowide"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivExercise"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:id="@+id/tvExerciseDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PUSH UPS"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/audiowide"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvExerciseTitle"
+                android:layout_margin="10dp"/>
+
+            <FrameLayout
+                android:id="@+id/flSeeDetails"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="75dp"
+                android:layout_marginEnd="75dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/btn_gray_ripple_background"
+                android:layout_margin="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="SEE DETAILS"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/audiowide"
+                android:textStyle="bold|italic"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

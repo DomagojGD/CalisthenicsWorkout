@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Calisthenics Workout</string>
+
+    <string name="hyperlink">Note: I made this app to track my training progress.
+                All information gathered in this app is provided for free by <a href="https://www.hybridcalisthenics.com/">Hybrid Calisthenics.</a> Visit them for more information.</string>
+</resources>

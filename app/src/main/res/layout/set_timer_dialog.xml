@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rest_timer_dialog_background">
+
+    <TextView
+        android:id="@+id/tvSetTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SET TIMER"
+        android:textColor="@color/dark_mode_gray_background"
+        android:textSize="16sp"
+        android:fontFamily="@font/audiowide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/tvTimerDotsBetween"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text=":"
+        android:textSize="25sp"
+        android:textColor="@color/dark_mode_gray_background"
+        android:fontFamily="@font/audiowide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSetTimer"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etTimerMinutes"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_dark_gray_stroke_background"
+        android:text="02"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="@color/dark_mode_gray_background"
+        android:fontFamily="@font/audiowide"
+        app:layout_constraintEnd_toStartOf="@id/tvTimerDotsBetween"
+        app:layout_constraintTop_toTopOf="@id/tvTimerDotsBetween"
+        android:layout_marginEnd="10dp"
+        android:inputType="number"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etTimerSeconds"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_dark_gray_stroke_background"
+        android:text="00"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="@color/dark_mode_gray_background"
+        android:fontFamily="@font/audiowide"
+        app:layout_constraintStart_toEndOf="@id/tvTimerDotsBetween"
+        app:layout_constraintTop_toTopOf="@id/tvTimerDotsBetween"
+        android:layout_marginStart="10dp"
+        android:inputType="number"/>
+
+    <LinearLayout
+        android:id="@+id/llFinishSetTimerDialogButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etTimerMinutes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancelSetTimerDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_light_gray_ripple_background"
+            android:text="CANCEL"
+            android:textColor="@color/dark_mode_gray_background"
+            android:textSize="20sp"
+            android:fontFamily="@font/audiowide"
+            android:layout_weight="0.5"
+            android:layout_marginEnd="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSubmitSetTimerDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_light_gray_ripple_background"
+            android:text="SUBMIT"
+            android:textColor="@color/dark_mode_gray_background"
+            android:textSize="20sp"
+            android:fontFamily="@font/audiowide"
+            android:layout_weight="0.5"
+            android:layout_marginStart="10dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

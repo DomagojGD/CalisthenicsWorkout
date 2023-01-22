@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transition xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/recycler_view_item_workout_set_background"></item>
+    <item android:drawable="@drawable/item_recycler_view_exercise_done_background"></item>
+
+</transition>

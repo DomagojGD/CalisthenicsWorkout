@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ExerciseTutorialActivity"
+    android:background="@color/dark_mode_gray_background">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarExerciseTutorial"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/dark_mode_gray_background"
+        app:titleTextColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivExerciseGIF"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarExerciseTutorial"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:id="@+id/tvLevelOne"
+                android:layout_width="325dp"
+                android:layout_height="wrap_content"
+                android:text="Level One"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/audiowide"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivExerciseGIF"
+                android:layout_marginTop="50dp"/>
+
+            <CheckBox
+                android:id="@+id/cbLevelOne"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                app:layout_constraintStart_toEndOf="@id/tvLevelOne"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvLevelOne"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/tvLevelTwo"
+                android:layout_width="325dp"
+                android:layout_height="wrap_content"
+                android:text="Level Two"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/audiowide"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLevelOne"
+                android:layout_margin="20dp"/>
+
+            <CheckBox
+                android:id="@+id/cbLevelTwo"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                app:layout_constraintStart_toEndOf="@id/tvLevelTwo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvLevelTwo"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/tvLevelThree"
+                android:layout_width="325dp"
+                android:layout_height="wrap_content"
+                android:text="Level Three"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/audiowide"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLevelTwo"
+                android:layout_margin="20dp"/>
+
+            <CheckBox
+                android:id="@+id/cbLevelThree"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                app:layout_constraintStart_toEndOf="@id/tvLevelThree"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvLevelThree"
+                android:layout_marginEnd="20dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLevelThree"
+        app:layout_constraintBottom_toTopOf="@id/llTutorialBtns"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <TextView
+            android:id="@+id/tvLevelsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Levels text"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/audiowide" />
+
+    </ScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/llTutorialBtns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp">
+
+        <FrameLayout
+            android:id="@+id/flTutorial"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginEnd="75dp"
+            android:background="@drawable/btn_gray_ripple_background"
+            android:layout_margin="10dp"
+            android:layout_weight="0.5">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="TUTORIAL"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/audiowide"
+                android:textStyle="bold|italic"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/flFormCues"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginEnd="75dp"
+            android:background="@drawable/btn_gray_ripple_background"
+            android:layout_margin="10dp"
+            android:layout_weight="0.5">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="FORM CUES"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/audiowide"
+                android:textStyle="bold|italic"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
