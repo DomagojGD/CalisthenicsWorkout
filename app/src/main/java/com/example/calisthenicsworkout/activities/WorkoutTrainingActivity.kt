@@ -315,7 +315,7 @@ class WorkoutTrainingActivity : AppCompatActivity() {
 
                     timerOffset = restTimerDuration - millisUntilFinished
 
-                    //Set milliUntillFinished to Double
+                    //Set milliUntilFinished to Double
                     val millisUntilFinishedToDouble = "${millisUntilFinished}.00".toDouble()
                     //Get minutes value
                     val minutesValue = (millisUntilFinished/60_000).toBigDecimal().setScale(1, RoundingMode.HALF_UP).toInt()
@@ -431,6 +431,7 @@ class WorkoutTrainingActivity : AppCompatActivity() {
         }
 
         restTimerDuration = 120_000
+        timerOffset = 0
 
         workoutTimeStart = null
         workoutTimeFinish = null

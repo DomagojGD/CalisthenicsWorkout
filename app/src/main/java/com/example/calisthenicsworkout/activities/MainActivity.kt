@@ -237,3 +237,5 @@ class MainActivity : AppCompatActivity() {
         binding = null
     }
 }
+
+//TODO pregledaj svaku vježbu da li su poremećeni samo gifovi ili i ostale stavke iz liste
