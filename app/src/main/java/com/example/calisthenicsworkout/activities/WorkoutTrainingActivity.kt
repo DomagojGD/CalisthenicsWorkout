@@ -34,6 +34,7 @@ class WorkoutTrainingActivity : AppCompatActivity() {
 
     private var restCountDownTimer: CountDownTimer? = null
     private var restTimerDuration: Long = 120_000
+    private var timerOffset: Long = 0
 
     private var restTimerFinishedPlayer: MediaPlayer? = null
 
@@ -302,65 +303,96 @@ class WorkoutTrainingActivity : AppCompatActivity() {
             if(restCountDownTimer != null){
                 restCountDownTimer!!.cancel()
             }
+            timerOffset = 0
         }
 
-        restTimerDialog.show()
+        // Method to start rest countdown timer, showing both minutes and seconds values
+        fun startRestCountDownTimer(timerOffsetL: Long){
 
-        //Set rest timer count down
-        restCountDownTimer = object: CountDownTimer(restTimerDuration - 1000, 1000){
-            override fun onTick(millisUntilFinished: Long) {
+            //Set rest timer count down
+            restCountDownTimer = object: CountDownTimer(restTimerDuration - timerOffsetL - 1000, 1000){
+                override fun onTick(millisUntilFinished: Long) {
 
-                val millisUntilFinishedToDouble = "${millisUntilFinished}.00".toDouble()
-                //Get minutes value
-                val minutesValue = (millisUntilFinished/60_000).toBigDecimal().setScale(1, RoundingMode.HALF_UP).toInt()
+                    timerOffset = restTimerDuration - millisUntilFinished
 
-                //Set difference between minutes and seconds- this is a decimal number of type double
-                val secondsDifference = millisUntilFinishedToDouble/60_000.0 - minutesValue.toDouble()
+                    //Set milliUntillFinished to Double
+                    val millisUntilFinishedToDouble = "${millisUntilFinished}.00".toDouble()
+                    //Get minutes value
+                    val minutesValue = (millisUntilFinished/60_000).toBigDecimal().setScale(1, RoundingMode.HALF_UP).toInt()
 
-                //Get value of seconds
-                val secondsValue = (secondsDifference*60).toBigDecimal().setScale(0, RoundingMode.HALF_UP).toInt()
+                    //Set difference between minutes and seconds- this is a decimal number of type double
+                    val secondsDifference = millisUntilFinishedToDouble/60_000.0 - minutesValue.toDouble()
 
-                //If minutes value is single digit, then add a 0 at the beginning to make it double digit
-                if(minutesValue.toString().length == 2){
-                    binding.tvTimerMinutes.text = minutesValue.toString()
-                }else{
-                    binding.tvTimerMinutes.text = "0$minutesValue"
-                }
+                    //Get value of seconds
+                    val secondsValue = (secondsDifference*60).toBigDecimal().setScale(0, RoundingMode.HALF_UP).toInt()
 
-                //If seconds value is single digit, then add a 0 at the beginning to make it double digit
-                if(secondsValue.toString().length == 2){
-                    binding.tvTimerSeconds.text = (secondsValue).toString()
-                }else{
-                    binding.tvTimerSeconds.text = "0$secondsValue"
-                }
+                    //If minutes value is single digit, then add a 0 at the beginning to make it double digit
+                    if(minutesValue.toString().length == 2){
+                        binding.tvTimerMinutes.text = minutesValue.toString()
+                    }else{
+                        binding.tvTimerMinutes.text = "0$minutesValue"
+                    }
 
-                //If 3 seconds of count down are left, play the "beep" sound for each of last 3 seconds
-                if(minutesValue == 0){
+                    //If seconds value is single digit, then add a 0 at the beginning to make it double digit
+                    if(secondsValue.toString().length == 2){
+                        binding.tvTimerSeconds.text = (secondsValue).toString()
+                    }else{
+                        binding.tvTimerSeconds.text = "0$secondsValue"
+                    }
 
-                    if(secondsValue == 3 || secondsValue == 2 || secondsValue == 1){
+                    /*From "val millisUntilFinishedToDouble = "${millisUntilFinished}.00".toDouble()"
+                    * till here we set timer text to show minutes and seconds values*/
 
-                        try {
-                            val soundURI = Uri.parse(
-                                "android.resource://com.example.calisthenicsworkout/" + R.raw.three_seconds_sound)
-                            restTimerFinishedPlayer = MediaPlayer.create(applicationContext, soundURI)
-                            restTimerFinishedPlayer?.isLooping = false
-                            restTimerFinishedPlayer?.start()
+                    //If 3 seconds of count down are left, play the "beep" sound for each of last 3 seconds
+                    if(minutesValue == 0){
 
-                        }catch (e: Exception){
-                            e.printStackTrace()
+                        if(secondsValue == 3 || secondsValue == 2 || secondsValue == 1){
+
+                            try {
+                                val soundURI = Uri.parse(
+                                    "android.resource://com.example.calisthenicsworkout/" + R.raw.three_seconds_sound)
+                                restTimerFinishedPlayer = MediaPlayer.create(applicationContext, soundURI)
+                                restTimerFinishedPlayer?.isLooping = false
+                                restTimerFinishedPlayer?.start()
+
+                            }catch (e: Exception){
+                                e.printStackTrace()
+                            }
                         }
                     }
+
                 }
 
-            }
+                //Dismiss the dialog and stop the "beep" sound when count down is finished
+                override fun onFinish() {
+                    restTimerDialog.dismiss()
+                    restTimerFinishedPlayer?.stop()
+                    timerOffset = 0
+                }
 
-            //Dismiss the dialog and stop the "beep" sound when count down is finished
-            override fun onFinish() {
-                restTimerDialog.dismiss()
-                restTimerFinishedPlayer?.stop()
-            }
+            }.start()
+        }
 
-        }.start()
+        binding.btnAddFiveSeconds.setOnClickListener {
+
+            if(restCountDownTimer != null){
+                restCountDownTimer!!.cancel()
+                timerOffset -= 5000
+                startRestCountDownTimer(timerOffset)
+            }
+        }
+
+        binding.btnSubtractFiveSeconds.setOnClickListener {
+            if(restCountDownTimer != null){
+                restCountDownTimer!!.cancel()
+                timerOffset += 5000
+                startRestCountDownTimer(timerOffset)
+            }
+        }
+
+        startRestCountDownTimer(timerOffset)
+
+        restTimerDialog.show()
     }
 
     //When back button is clicked, show warning dialog to ask the user if he is sure to cancel the workout
