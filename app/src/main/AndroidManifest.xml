@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CalisthenicsWorkout">
         <activity
+            android:name=".activities.HistoryActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.FinishedWorkoutActivity"
             android:exported="true" />
         <activity

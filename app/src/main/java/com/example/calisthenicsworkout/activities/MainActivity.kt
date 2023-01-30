@@ -135,6 +135,16 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             },500)
         }
+
+        binding!!.flHistory.setOnClickListener {
+
+            binding!!.shineHistory.startAnimation(btnShineAnimation)
+
+            Handler().postDelayed({
+                val intent = Intent(this, HistoryActivity::class.java)
+                startActivity(intent)
+            },500)
+        }
     }
 
     //This method is going to insert push ups form PushUpsList object into PushUps room database

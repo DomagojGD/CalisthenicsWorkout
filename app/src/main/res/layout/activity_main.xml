@@ -88,7 +88,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/flReport"
+        android:id="@+id/flHistory"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="75dp"
@@ -111,7 +111,7 @@
             android:gravity="center"/>
 
         <View
-            android:id="@+id/shineReport"
+            android:id="@+id/shineHistory"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/btn_shine_background"

@@ -19,6 +19,7 @@
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/drawable/checked_exercise_done_circle_background.xml" value="0.225" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/drawable/circular_frame_layout_button_bg.xml" value="0.22777777777777777" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/drawable/circular_frame_layout_button_ripple_bg.xml" value="0.22777777777777777" />
+        <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/drawable/day_in_calendar_circular_background.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/drawable/dialog_white_stroke_background.xml" value="0.21944444444444444" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/drawable/et_number_of_reps_exercise_done_background.xml" value="0.225" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/drawable/exercise_done_green_transition.xml" value="0.2222222222222222" />
@@ -32,6 +33,7 @@
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/activity_exercises.xml" value="0.24048913043478262" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/activity_exercises_details.xml" value="0.24048913043478262" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/activity_finished_workout.xml" value="0.24864130434782608" />
+        <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/activity_history.xml" value="0.25371120107962214" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/activity_main.xml" value="0.25271739130434784" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/activity_solid_start_program.xml" value="0.24864130434782608" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/activity_training.xml" value="0.25271739130434784" />
@@ -42,6 +44,7 @@
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/dialog_rest_timer.xml" value="0.2259963768115942" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/dialog_tutorial_and_form_cues_text.xml" value="0.22146739130434784" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/exercise_settings_pop_up_menu.xml" value="0.24456521739130435" />
+        <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/item_day_in_calendar.xml" value="1.6" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/item_exercise.xml" value="0.24048913043478262" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/item_workout_exercise.xml" value="0.24003623188405798" />
         <entry key="..\:/Users/domag/Desktop/Domagoj Zovko/CalisthenicsWorkout/app/src/main/res/layout/set_timer_dialog.xml" value="0.24864130434782608" />
