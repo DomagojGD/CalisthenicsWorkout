@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/btn_white_stroke_background"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+        android:id="@+id/tvSolidStartProgram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Solid Start Program"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/audiowide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/tvWorkoutName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Day One"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:fontFamily="@font/audiowide"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSolidStartProgram"/>
+
+        <TextView
+            android:id="@+id/tvWorkoutDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01/02/2023"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:fontFamily="@font/audiowide"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toEndOf="@id/tvWorkoutName"
+            app:layout_constraintEnd_toStartOf="@+id/tvWorkoutDuration"
+            app:layout_constraintTop_toBottomOf="@+id/tvSolidStartProgram"/>
+
+        <TextView
+            android:id="@+id/tvWorkoutDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30:22"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/audiowide"
+            android:layout_margin="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSolidStartProgram"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

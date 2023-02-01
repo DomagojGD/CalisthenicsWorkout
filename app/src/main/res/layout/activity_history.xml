@@ -155,54 +155,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llDaysOfWeek"
-        app:layout_constraintBottom_toTopOf="@id/llLastWorkoutOne"
+        app:layout_constraintBottom_toTopOf="@id/rvLastWorkouts"
         android:layout_margin="10dp"/>
 
-    <LinearLayout
-        android:id="@+id/llLastWorkoutOne"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLastWorkouts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/llLastWorkoutTwo"
-        android:layout_margin="10dp"
-        android:padding="10dp"
-        android:background="@drawable/btn_white_stroke_background">
-
-        <TextView
-            android:id="@+id/tvLastWorkoutOneTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Day One"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/audiowide"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llLastWorkoutTwo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="10dp"
-        android:padding="10dp"
-        android:background="@drawable/btn_white_stroke_background">
-
-        <TextView
-            android:id="@+id/tvLastWorkoutTwoTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Day Two"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/audiowide"/>
-
-    </LinearLayout>
+        android:layout_margin="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
