@@ -13,9 +13,10 @@ data class LastWorkoutEntity(
     val duration: String = "",
     val numberOfSetsOne: Int = 0,
     val numberOfSetsTwo: Int = 0,
-    val repsList: ArrayList<Int> = ArrayList()
 ): Serializable
 
 /*TODO number of sets će biti val preko kojeg ćeš otvoriti WorkoutTrainingActivity s dovoljnim brojem setova za vježbe.
 *  U repsList ćeš u WorkoutTrainingActivity spremiti sve repsove i onda ih dodati u model i recyclerView
-*  Napravi bazu podataka i adapter s ovim entityem.*/
+*  Napravi bazu podataka i adapter s ovim entityem.
+*
+* val repsList: ArrayList<Int> = ArrayList()*/

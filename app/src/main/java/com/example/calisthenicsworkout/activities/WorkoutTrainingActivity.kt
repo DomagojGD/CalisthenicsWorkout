@@ -14,7 +14,9 @@ import android.view.MenuInflater
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.calisthenicsworkout.R
 import com.example.calisthenicsworkout.databinding.ActivityWorkoutTrainingBinding
 import com.example.calisthenicsworkout.databinding.DialogOnBackPressedWorkoutBinding
@@ -22,6 +24,7 @@ import com.example.calisthenicsworkout.databinding.DialogRestTimerBinding
 import com.example.calisthenicsworkout.databinding.SetTimerDialogBinding
 import com.example.calisthenicsworkout.models.workoutReps.NumberOfWorkoutRepsAdapter
 import com.example.calisthenicsworkout.models.workoutReps.RepsModel
+import com.example.calisthenicsworkout.models.workoutReps.SwipeToDeleteCallback
 import java.math.RoundingMode
 
 class WorkoutTrainingActivity : AppCompatActivity() {
@@ -52,6 +55,7 @@ class WorkoutTrainingActivity : AppCompatActivity() {
 
         workoutTimeStart = System.currentTimeMillis()
 
+        //See if there is extra from previous activity
         if(intent.hasExtra(SolidStartProgramActivity.EXTRA_TRAINING_DETAILS)){
 
             intentExtraTrainingDetails = intent.getStringExtra(SolidStartProgramActivity.EXTRA_TRAINING_DETAILS)
@@ -68,6 +72,7 @@ class WorkoutTrainingActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        //What happens when user clicks on menu of exercise number one (for example "push ups" in "day one")
         binding!!.flWorkoutExerciseMenuOne.setOnClickListener {
 
             when(intentExtraTrainingDetails){
@@ -92,6 +97,7 @@ class WorkoutTrainingActivity : AppCompatActivity() {
                 }
             }
 
+            //What happens when user clicks on menu of exercise number two (for example "leg raises" in "day one")
             binding!!.flWorkoutExerciseMenuTwo.setOnClickListener {
 
                 when(intentExtraTrainingDetails){
@@ -242,9 +248,16 @@ class WorkoutTrainingActivity : AppCompatActivity() {
 
         //Add new set for exercise number one
         binding!!.btnAddSetOne.setOnClickListener {
-            val lastRepsModelId = workoutRepsList[workoutRepsList.size-1].id
-            workoutRepsList.add(RepsModel(lastRepsModelId+1,10))
-            adapter.notifyItemInserted(workoutRepsList.size-1)
+
+            //Check if workoutRepsList is empty so user can add new sets depending on that information
+            if(workoutRepsList.isNotEmpty()){
+                val lastRepsModelId = workoutRepsList[workoutRepsList.size-1].id
+                workoutRepsList.add(RepsModel(lastRepsModelId+1,10))
+                adapter.notifyItemInserted(workoutRepsList.size-1)
+            }else{
+                workoutRepsList.add(RepsModel(0,10))
+                adapter.notifyItemInserted(workoutRepsList.size-1)
+            }
         }
 
         //Set on click listener to open a rest timer dialog
@@ -253,6 +266,19 @@ class WorkoutTrainingActivity : AppCompatActivity() {
                 setRestTimerDialog()
             }
         })
+
+        val swipeToDeleteCallback = object : SwipeToDeleteCallback(this){
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                super.onSwiped(viewHolder, direction)
+
+                adapter.deleteRep(viewHolder.adapterPosition)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+
+        itemTouchHelper.attachToRecyclerView(binding!!.rvExercisesOne)
     }
 
     //Set recycler view for exercise number two
@@ -272,9 +298,16 @@ class WorkoutTrainingActivity : AppCompatActivity() {
 
         //Add new set for exercise number two
         binding!!.btnAddSetTwo.setOnClickListener {
-            val lastRepsModelId = workoutRepsList[workoutRepsList.size-1].id
-            workoutRepsList.add(RepsModel(lastRepsModelId+1,10))
-            adapter.notifyItemInserted(workoutRepsList.size-1)
+
+            //Check if workoutRepsList is empty so user can add new sets depending on that information
+            if(workoutRepsList.isNotEmpty()){
+                val lastRepsModelId = workoutRepsList[workoutRepsList.size-1].id
+                workoutRepsList.add(RepsModel(lastRepsModelId+1,10))
+                adapter.notifyItemInserted(workoutRepsList.size-1)
+            }else{
+                workoutRepsList.add(RepsModel(0,10))
+                adapter.notifyItemInserted(workoutRepsList.size-1)
+            }
         }
 
         //Set on click listener to open a rest timer dialog
@@ -283,6 +316,19 @@ class WorkoutTrainingActivity : AppCompatActivity() {
                 setRestTimerDialog()
             }
         })
+
+        val swipeToDeleteCallback = object : SwipeToDeleteCallback(this){
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                super.onSwiped(viewHolder, direction)
+
+                adapter.deleteRep(viewHolder.adapterPosition)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+
+        itemTouchHelper.attachToRecyclerView(binding!!.rvExercisesTwo)
     }
 
     //Open rest timer dialog

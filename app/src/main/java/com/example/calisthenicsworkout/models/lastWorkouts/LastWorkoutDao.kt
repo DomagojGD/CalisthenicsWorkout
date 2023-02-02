@@ -11,9 +11,9 @@ interface LastWorkoutDao {
     @Insert
     suspend fun insert(lastWorkoutEntity: LastWorkoutEntity)
 
-    @Query("Select * from `lastWorkouts-table`")
+    /*@Query("Select * from `lastWorkouts-table`")
     suspend fun fetchAllLastWorkouts(): Flow<List<LastWorkoutEntity>>
 
     @Query("Select * from `lastWorkouts-table` where id=:id")
-    suspend fun fetchLastWorkoutById(id: Int): Flow<LastWorkoutEntity>
+    suspend fun fetchLastWorkoutById(id: Int): Flow<LastWorkoutEntity>*/
 }

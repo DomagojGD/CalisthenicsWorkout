@@ -70,4 +70,10 @@ class NumberOfWorkoutRepsAdapter(private var repsItems: ArrayList<RepsModel>):
     fun setRestTimerClickListener(clickListener: SetRestTimerClickListener){
         mListener = clickListener
     }
+
+    fun deleteRep(position: Int){
+
+        repsItems.removeAt(position)
+        notifyItemRemoved(position)
+    }
 }
