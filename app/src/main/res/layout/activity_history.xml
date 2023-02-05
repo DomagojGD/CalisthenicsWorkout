@@ -155,7 +155,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llDaysOfWeek"
-        app:layout_constraintBottom_toTopOf="@id/rvLastWorkouts"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/tvWorkoutsHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Workouts History:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/audiowide"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvCalendar"
         android:layout_margin="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -164,6 +176,7 @@
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWorkoutsHistory"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="10dp"/>
 

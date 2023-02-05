@@ -130,8 +130,14 @@ class HistoryActivity : AppCompatActivity() {
             lastWorkoutDao.fetchAllLastWorkouts().collect{
                 val lastWorkoutsList = ArrayList<LastWorkoutEntity>()
 
-                for(i in 0 until it.size){
-                    lastWorkoutsList.add(it[i])
+                if(it.size <= 3){
+                    for(i in 0 until it.size){
+                        lastWorkoutsList.add(it[i])
+                    }
+                }else{
+                    for(i in 0 until 3){
+                        lastWorkoutsList.add(it[i])
+                    }
                 }
 
                 if(lastWorkoutsList.isNotEmpty()){
@@ -140,12 +146,12 @@ class HistoryActivity : AppCompatActivity() {
                     binding!!.rvLastWorkouts.adapter = adapter
                     binding!!.rvLastWorkouts.layoutManager = LinearLayoutManager(this@HistoryActivity)
 
-                }else{
-                    Toast.makeText(this@HistoryActivity, "Prazno", Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
+
+    //TODO Dodaj još komentare i da je kalendar zelen ako je workout napravljen
 
     override fun onDestroy() {
         super.onDestroy()

@@ -136,14 +136,45 @@ class WorkoutTrainingActivity : AppCompatActivity() {
 
         binding!!.btnWorkoutFinish.setOnClickListener {
 
-            getWorkoutInformation()
-
             workoutTimeFinish = System.currentTimeMillis()
 
             workoutDurationInMillis = workoutTimeFinish!! - workoutTimeStart!!
 
             val intent = Intent(this, FinishedWorkoutActivity::class.java)
             intent.putExtra(EXTRA_WORKOUT_DURATION_DETAILS, workoutDurationInMillis.toString())
+
+            val lastWorkoutDao = (application as DatabasesApp).lastWorkoutsDB.lastWorkoutDao()
+
+            var workoutName = ""
+
+            when(intentExtraTrainingDetails){
+                "day one" ->{
+                    workoutName = "#1 Day One"
+                }
+                "day two" ->{
+                    workoutName = "#2 Day Two"
+                }
+                "day three" ->{
+                    workoutName = "#3 Day Three"
+                }
+            }
+
+            val workoutDate = "${LocalDate.now().dayOfMonth}/${LocalDate.now().monthValue}/${LocalDate.now().year}"
+
+            //Get workout duration minutes value
+            val workoutDurationMinutes = (workoutDurationInMillis!!/60_000).toBigDecimal().setScale(
+                1, RoundingMode.HALF_UP).toInt()
+            //Set difference between minutes and seconds- this is a decimal number of type double
+            val secondsDifference = workoutDurationInMillis!!.toDouble()/60_000 - workoutDurationMinutes.toDouble()
+            //Get workout duration seconds value
+            val workoutDurationSeconds = (secondsDifference*60).toBigDecimal().setScale(0, RoundingMode.HALF_UP).toInt()
+
+            val workoutDuration = "$workoutDurationMinutes:$workoutDurationSeconds"
+
+            lifecycleScope.launch {
+                lastWorkoutDao.insert(LastWorkoutEntity(name = workoutName, date = workoutDate,
+                    duration = workoutDuration))
+            }
 
             startActivity(intent)
 
@@ -297,12 +328,6 @@ class WorkoutTrainingActivity : AppCompatActivity() {
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
 
         itemTouchHelper.attachToRecyclerView(binding!!.rvExercisesOne)
-
-        val rvItemsSize = adapter.itemCount
-
-        for(i in 0 until rvItemsSize){
-            repsValuesRVOne?.add(adapter.getRepsValue(i))
-        }
     }
 
     //Set recycler view for exercise number two
@@ -353,12 +378,6 @@ class WorkoutTrainingActivity : AppCompatActivity() {
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
 
         itemTouchHelper.attachToRecyclerView(binding!!.rvExercisesTwo)
-
-        val rvItemsSize = adapter.itemCount
-
-        for(i in 0 until rvItemsSize){
-            repsValuesRVTwo?.add(adapter.getRepsValue(i))
-        }
     }
 
     //Open rest timer dialog
@@ -497,42 +516,7 @@ class WorkoutTrainingActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)// Android version needs to be at least version Android 8
     private fun getWorkoutInformation(){
 
-        val lastWorkoutDao = (application as DatabasesApp).lastWorkoutsDB.lastWorkoutDao()
 
-        var workoutName = ""
-
-        when(intentExtraTrainingDetails){
-            "day one" ->{
-                workoutName = "#1 Day One"
-            }
-            "day two" ->{
-                workoutName = "#2 Day Two"
-            }
-            "day three" ->{
-                workoutName = "#3 Day Three"
-            }
-        }
-
-        val workoutDate = "${LocalDate.now().dayOfMonth}/${LocalDate.now().monthValue}/${LocalDate.now().year}"
-
-        //Get workout duration minutes value
-        val workoutDurationMinutes = (workoutDurationInMillis!!/60_000).toBigDecimal().setScale(
-            1, RoundingMode.HALF_UP).toInt()
-        //Set difference between minutes and seconds- this is a decimal number of type double
-        val secondsDifference = workoutDurationInMillis!!.toDouble()/60_000 - workoutDurationMinutes.toDouble()
-        //Get workout duration seconds value
-        val workoutDurationSeconds = (secondsDifference*60).toBigDecimal().setScale(0, RoundingMode.HALF_UP).toInt()
-
-        val workoutDuration = "$workoutDurationMinutes:$workoutDurationSeconds"
-
-        val numberOfSetsOne = binding!!.rvExercisesOne.adapter?.itemCount
-        val numberOfSetsTwo = binding!!.rvExercisesTwo.adapter?.itemCount
-
-        lifecycleScope.launch {
-            lastWorkoutDao.insert(LastWorkoutEntity(name = workoutName, date = workoutDate,
-                duration = workoutDuration, numberOfSetsOne = numberOfSetsOne!!, numberOfSetsTwo = numberOfSetsTwo!!,
-                repsListOne = repsValuesRVOne!!, repsListTwo = repsValuesRVTwo!!))
-        }
     }
 
     override fun onDestroy() {

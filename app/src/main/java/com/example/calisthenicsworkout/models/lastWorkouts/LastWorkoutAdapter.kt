@@ -25,7 +25,7 @@ class LastWorkoutAdapter(private val lastWorkoutsList: ArrayList<LastWorkoutEnti
 
         holder.workoutName.text = lastWorkoutsList[position].name
         holder.workoutDate.text = lastWorkoutsList[position].date
-        holder.workoutDuration.text = lastWorkoutsList[position].repsListOne[0]
+        holder.workoutDuration.text = lastWorkoutsList[position].duration
     }
 
     override fun getItemCount(): Int {

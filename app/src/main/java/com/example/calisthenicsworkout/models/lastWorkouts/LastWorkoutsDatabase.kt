@@ -7,7 +7,6 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 @Database(entities = [LastWorkoutEntity::class], version = 1)
-@TypeConverters(RepsListTypeConverter::class)
 abstract class LastWorkoutsDatabase: RoomDatabase() {
 
     abstract fun lastWorkoutDao(): LastWorkoutDao
