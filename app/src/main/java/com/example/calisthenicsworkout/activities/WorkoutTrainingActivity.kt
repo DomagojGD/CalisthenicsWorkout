@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -14,6 +15,8 @@ import android.view.MenuInflater
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,10 +25,18 @@ import com.example.calisthenicsworkout.databinding.ActivityWorkoutTrainingBindin
 import com.example.calisthenicsworkout.databinding.DialogOnBackPressedWorkoutBinding
 import com.example.calisthenicsworkout.databinding.DialogRestTimerBinding
 import com.example.calisthenicsworkout.databinding.SetTimerDialogBinding
+import com.example.calisthenicsworkout.models.DatabasesApp
+import com.example.calisthenicsworkout.models.lastWorkouts.LastWorkoutEntity
 import com.example.calisthenicsworkout.models.workoutReps.NumberOfWorkoutRepsAdapter
 import com.example.calisthenicsworkout.models.workoutReps.RepsModel
 import com.example.calisthenicsworkout.models.workoutReps.SwipeToDeleteCallback
+import kotlinx.coroutines.launch
 import java.math.RoundingMode
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class WorkoutTrainingActivity : AppCompatActivity() {
 
@@ -43,11 +54,16 @@ class WorkoutTrainingActivity : AppCompatActivity() {
 
     private var workoutTimeStart: Long? = null
     private var workoutTimeFinish: Long? = null
+    private var workoutDurationInMillis: Long? = null
+
+    private var repsValuesRVOne: ArrayList<String>? = null
+    private var repsValuesRVTwo: ArrayList<String>? = null
 
     companion object{
         var EXTRA_WORKOUT_DURATION_DETAILS = "extra_workout_duration_details"
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWorkoutTrainingBinding.inflate(layoutInflater)
@@ -120,9 +136,11 @@ class WorkoutTrainingActivity : AppCompatActivity() {
 
         binding!!.btnWorkoutFinish.setOnClickListener {
 
+            getWorkoutInformation()
+
             workoutTimeFinish = System.currentTimeMillis()
 
-            val workoutDurationInMillis = workoutTimeFinish!! - workoutTimeStart!!
+            workoutDurationInMillis = workoutTimeFinish!! - workoutTimeStart!!
 
             val intent = Intent(this, FinishedWorkoutActivity::class.java)
             intent.putExtra(EXTRA_WORKOUT_DURATION_DETAILS, workoutDurationInMillis.toString())
@@ -279,6 +297,12 @@ class WorkoutTrainingActivity : AppCompatActivity() {
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
 
         itemTouchHelper.attachToRecyclerView(binding!!.rvExercisesOne)
+
+        val rvItemsSize = adapter.itemCount
+
+        for(i in 0 until rvItemsSize){
+            repsValuesRVOne?.add(adapter.getRepsValue(i))
+        }
     }
 
     //Set recycler view for exercise number two
@@ -329,6 +353,12 @@ class WorkoutTrainingActivity : AppCompatActivity() {
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
 
         itemTouchHelper.attachToRecyclerView(binding!!.rvExercisesTwo)
+
+        val rvItemsSize = adapter.itemCount
+
+        for(i in 0 until rvItemsSize){
+            repsValuesRVTwo?.add(adapter.getRepsValue(i))
+        }
     }
 
     //Open rest timer dialog
@@ -462,6 +492,47 @@ class WorkoutTrainingActivity : AppCompatActivity() {
         }
 
         warningDialog.show()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)// Android version needs to be at least version Android 8
+    private fun getWorkoutInformation(){
+
+        val lastWorkoutDao = (application as DatabasesApp).lastWorkoutsDB.lastWorkoutDao()
+
+        var workoutName = ""
+
+        when(intentExtraTrainingDetails){
+            "day one" ->{
+                workoutName = "#1 Day One"
+            }
+            "day two" ->{
+                workoutName = "#2 Day Two"
+            }
+            "day three" ->{
+                workoutName = "#3 Day Three"
+            }
+        }
+
+        val workoutDate = "${LocalDate.now().dayOfMonth}/${LocalDate.now().monthValue}/${LocalDate.now().year}"
+
+        //Get workout duration minutes value
+        val workoutDurationMinutes = (workoutDurationInMillis!!/60_000).toBigDecimal().setScale(
+            1, RoundingMode.HALF_UP).toInt()
+        //Set difference between minutes and seconds- this is a decimal number of type double
+        val secondsDifference = workoutDurationInMillis!!.toDouble()/60_000 - workoutDurationMinutes.toDouble()
+        //Get workout duration seconds value
+        val workoutDurationSeconds = (secondsDifference*60).toBigDecimal().setScale(0, RoundingMode.HALF_UP).toInt()
+
+        val workoutDuration = "$workoutDurationMinutes:$workoutDurationSeconds"
+
+        val numberOfSetsOne = binding!!.rvExercisesOne.adapter?.itemCount
+        val numberOfSetsTwo = binding!!.rvExercisesTwo.adapter?.itemCount
+
+        lifecycleScope.launch {
+            lastWorkoutDao.insert(LastWorkoutEntity(name = workoutName, date = workoutDate,
+                duration = workoutDuration, numberOfSetsOne = numberOfSetsOne!!, numberOfSetsTwo = numberOfSetsTwo!!,
+                repsListOne = repsValuesRVOne!!, repsListTwo = repsValuesRVTwo!!))
+        }
     }
 
     override fun onDestroy() {

@@ -17,7 +17,8 @@ data class LastWorkoutEntity(
     val duration: String = "",
     val numberOfSetsOne: Int = 0,
     val numberOfSetsTwo: Int = 0,
-    val repsList: ArrayList<String> = ArrayList()
+    val repsListOne: ArrayList<String> = ArrayList(),
+    val repsListTwo: ArrayList<String> = ArrayList()
 ): Serializable
 
 /*Type converter for repsList to be stored in LastWorkoutsDatabase because Lists can't be stored in room database directly.

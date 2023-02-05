@@ -76,4 +76,9 @@ class NumberOfWorkoutRepsAdapter(private var repsItems: ArrayList<RepsModel>):
         repsItems.removeAt(position)
         notifyItemRemoved(position)
     }
+
+    fun getRepsValue(position: Int): String {
+
+        return repsItems[position].numberOfReps.toString()
+    }
 }

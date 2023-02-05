@@ -3,11 +3,19 @@ package com.example.calisthenicsworkout.activities
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.calisthenicsworkout.CalendarAdapter
 import com.example.calisthenicsworkout.R
 import com.example.calisthenicsworkout.databinding.ActivityHistoryBinding
+import com.example.calisthenicsworkout.models.DatabasesApp
+import com.example.calisthenicsworkout.models.lastWorkouts.LastWorkoutAdapter
+import com.example.calisthenicsworkout.models.lastWorkouts.LastWorkoutEntity
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -50,6 +58,8 @@ class HistoryActivity : AppCompatActivity() {
 
             getNextMonth()
         }
+
+        setUpRecyclerView()
     }
 
     @RequiresApi(Build.VERSION_CODES.O) // Android version needs to be at least version Android 8
@@ -109,7 +119,32 @@ class HistoryActivity : AppCompatActivity() {
         if(currentDate!! < LocalDate.now()) {
             currentDate = currentDate!!.plusMonths(1)
             setCalendar(currentDate!!)
-        } // TODO popravi ovo, dopušta ti da odeš na february, a ne bi trebo
+        }
+    }
+
+    private fun setUpRecyclerView(){
+
+        val lastWorkoutDao = (application as DatabasesApp).lastWorkoutsDB.lastWorkoutDao()
+
+        lifecycleScope.launch {
+            lastWorkoutDao.fetchAllLastWorkouts().collect{
+                val lastWorkoutsList = ArrayList<LastWorkoutEntity>()
+
+                for(i in 0 until it.size){
+                    lastWorkoutsList.add(it[i])
+                }
+
+                if(lastWorkoutsList.isNotEmpty()){
+
+                    val adapter = LastWorkoutAdapter(lastWorkoutsList)
+                    binding!!.rvLastWorkouts.adapter = adapter
+                    binding!!.rvLastWorkouts.layoutManager = LinearLayoutManager(this@HistoryActivity)
+
+                }else{
+                    Toast.makeText(this@HistoryActivity, "Prazno", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
     }
 
     override fun onDestroy() {

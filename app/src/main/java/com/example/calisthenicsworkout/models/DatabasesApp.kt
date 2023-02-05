@@ -2,6 +2,7 @@ package com.example.calisthenicsworkout.models
 
 import android.app.Application
 import com.example.calisthenicsworkout.models.bridges.BridgesDatabase
+import com.example.calisthenicsworkout.models.lastWorkouts.LastWorkoutsDatabase
 import com.example.calisthenicsworkout.models.legRaises.LegRaisesDatabase
 import com.example.calisthenicsworkout.models.pullups.PullUpsDatabase
 import com.example.calisthenicsworkout.models.pushups.PushUpsDatabase
@@ -27,5 +28,9 @@ class DatabasesApp: Application() {
 
     val bridgesDB by lazy{
         BridgesDatabase.getInstance(this)
+    }
+
+    val lastWorkoutsDB by lazy {
+        LastWorkoutsDatabase.getInstance(this)
     }
 }
