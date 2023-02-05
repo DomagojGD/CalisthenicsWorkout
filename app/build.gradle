@@ -71,4 +71,7 @@ dependencies {
 
     //Library for swipeToDeleteCallback background color and image
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4'
+
+    //Gson implementation
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
