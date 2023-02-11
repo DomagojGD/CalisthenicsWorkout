@@ -3,21 +3,26 @@ Android app to track calisthenics workout progress. Intended to be used for both
 All fitness information gathered in this application is provided for free by Hybrid Calisthenics. Visit them for more info.
 Thank you Hampton!
 ## Features
-* Follow solid start calisthenics program.
-* Customize your workout regime.
-* Track workout progress for every exercise.
+* Follow solid start calisthenics program
+* Customize your workout regime
+* Track workout progress for every exercise
 ## Application uses:
 * Database: Room database version 2.4.0
+* Kotlin coroutines
+*  xabaras/RecyclerViewSwipeDecorator
+*  hdodenhof/CircleImageView
 ## Functionalities app consists:
 * Recycler Views
 * Toolbars
 * Menus
+* Custom animations
 * Multiple layer navigation
 * User saved workout progress
 * Countdown timer
+* Workout history tracker
 ## Screenshots
 ### Home page
-<img src="https://user-images.githubusercontent.com/123309964/214385112-91a1726c-633b-4dc1-b68e-f29bd45e6afc.jpeg" width="250">
+<img src="https://user-images.githubusercontent.com/123309964/218268443-e9eb1d01-94be-4c97-8e50-a72ac3f25bfa.png" width="250">
 
 ### Exercises list
 <img src="https://user-images.githubusercontent.com/123309964/214387837-1f002ac0-883a-49cc-90e8-fe0d142c4d15.jpeg" width="250">
@@ -35,7 +40,7 @@ Thank you Hampton!
 <img src="https://user-images.githubusercontent.com/123309964/214388883-b7872e94-3a06-4350-9627-8476ead0c4bf.jpeg" width="250">
 
 ### Rest timer dialog
-<img src="https://user-images.githubusercontent.com/123309964/214389123-5bc52580-41e4-4a8e-98e1-b0475aebd477.jpeg" width="250">
+<img src="https://user-images.githubusercontent.com/123309964/218268497-88170232-4de2-4dd2-8fa3-aaeb961a3173.png" width="250">
 
 ### Change rest timer duration
 <img src="https://user-images.githubusercontent.com/123309964/214389796-31b553f2-833c-4351-8dfa-045a7420d606.jpeg" width="250">
@@ -43,9 +48,8 @@ Thank you Hampton!
 ### Finished workout screen
 <img src="https://user-images.githubusercontent.com/123309964/214389356-f1fcac49-3d41-4731-b554-3f7fc982c1be.jpeg" width="250">
 
-## New feature plans:
-* Workout history and calendar tracker
-
+### History screen
+<img src="https://user-images.githubusercontent.com/123309964/218268578-eedbaada-1457-4878-8eb4-25eefba2aee1.png" width="250">
 
 
 
