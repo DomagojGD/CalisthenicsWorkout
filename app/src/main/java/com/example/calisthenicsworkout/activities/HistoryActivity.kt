@@ -72,6 +72,8 @@ class HistoryActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O) // Android version needs to be at least version Android 8
     private fun setCalendar(date: LocalDate){
 
+        val lastWorkoutDao = (application as DatabasesApp).lastWorkoutsDB.lastWorkoutDao()
+
         val daysOfMonthArray = ArrayList<String>()
 
         //get length of current month
@@ -98,13 +100,26 @@ class HistoryActivity : AppCompatActivity() {
             }
         }
 
-        //set recyclerView adapter and layout manager
-        val calendarAdapter = CalendarAdapter(daysOfMonthArray)
-        binding!!.rvCalendar.adapter = calendarAdapter
-        binding!!.rvCalendar.layoutManager = GridLayoutManager(this, 7)
-
         //set tvMonthYear text
         binding!!.tvMonthYear.text = getTvMonthYearText(date)
+
+        lifecycleScope.launch {
+            lastWorkoutDao.fetchAllLastWorkouts().collect{
+
+                val lastWorkoutsDatesList = ArrayList<String>()
+
+                for(i in 0..it.size-1){
+                    lastWorkoutsDatesList.add(it[i].date)
+                }
+
+                //set recyclerView adapter and layout manager
+                val calendarAdapter = CalendarAdapter(daysOfMonthArray, binding!!.tvMonthYear.text.toString(),
+                    lastWorkoutsDatesList)
+                binding!!.rvCalendar.adapter = calendarAdapter
+                binding!!.rvCalendar.layoutManager = GridLayoutManager(this@HistoryActivity, 7)
+            }
+        }
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O) // Android version needs to be at least version Android 8
@@ -122,6 +137,7 @@ class HistoryActivity : AppCompatActivity() {
         }
     }
 
+    //Srt up recycler view for last three workouts to be shown
     private fun setUpRecyclerView(){
 
         val lastWorkoutDao = (application as DatabasesApp).lastWorkoutsDB.lastWorkoutDao()
@@ -131,11 +147,11 @@ class HistoryActivity : AppCompatActivity() {
                 val lastWorkoutsList = ArrayList<LastWorkoutEntity>()
 
                 if(it.size <= 3){
-                    for(i in 0 until it.size){
+                    for(i in it.size-1 downTo 0){
                         lastWorkoutsList.add(it[i])
                     }
                 }else{
-                    for(i in 0 until 3){
+                    for(i in it.size-1 downTo it.size-3){
                         lastWorkoutsList.add(it[i])
                     }
                 }
@@ -150,8 +166,6 @@ class HistoryActivity : AppCompatActivity() {
             }
         }
     }
-
-    //TODO Dodaj još komentare i da je kalendar zelen ako je workout napravljen
 
     override fun onDestroy() {
         super.onDestroy()

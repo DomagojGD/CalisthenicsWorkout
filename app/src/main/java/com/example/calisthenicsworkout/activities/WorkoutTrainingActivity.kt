@@ -56,14 +56,11 @@ class WorkoutTrainingActivity : AppCompatActivity() {
     private var workoutTimeFinish: Long? = null
     private var workoutDurationInMillis: Long? = null
 
-    private var repsValuesRVOne: ArrayList<String>? = null
-    private var repsValuesRVTwo: ArrayList<String>? = null
-
     companion object{
         var EXTRA_WORKOUT_DURATION_DETAILS = "extra_workout_duration_details"
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O) // Android version needs to be at least version Android 8
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWorkoutTrainingBinding.inflate(layoutInflater)
@@ -147,6 +144,7 @@ class WorkoutTrainingActivity : AppCompatActivity() {
 
             var workoutName = ""
 
+            //Set workout name to be entered in LastWorkoutsDatabase
             when(intentExtraTrainingDetails){
                 "day one" ->{
                     workoutName = "#1 Day One"
@@ -159,6 +157,7 @@ class WorkoutTrainingActivity : AppCompatActivity() {
                 }
             }
 
+            //Set workout date to be entered in LastWorkoutsDatabase
             val workoutDate = "${LocalDate.now().dayOfMonth}/${LocalDate.now().monthValue}/${LocalDate.now().year}"
 
             //Get workout duration minutes value
@@ -169,8 +168,10 @@ class WorkoutTrainingActivity : AppCompatActivity() {
             //Get workout duration seconds value
             val workoutDurationSeconds = (secondsDifference*60).toBigDecimal().setScale(0, RoundingMode.HALF_UP).toInt()
 
+            //Set workout duration to be entered in LastWorkoutsDatabase
             val workoutDuration = "$workoutDurationMinutes:$workoutDurationSeconds"
 
+            //insert new finished workout to LastWorkoutsDatabase
             lifecycleScope.launch {
                 lastWorkoutDao.insert(LastWorkoutEntity(name = workoutName, date = workoutDate,
                     duration = workoutDuration))
