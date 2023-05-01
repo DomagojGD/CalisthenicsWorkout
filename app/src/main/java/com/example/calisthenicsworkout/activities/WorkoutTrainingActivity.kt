@@ -130,12 +130,14 @@ class WorkoutTrainingActivity : AppCompatActivity() {
 
         binding!!.btnWorkoutFinish.setOnClickListener {
 
+            //dialog to be shown when btnWorkoutFinish is clicked
             val dialogFinishWorkout = Dialog(this, R.style.Theme_Dialog)
             dialogFinishWorkout.setCancelable(false)
 
             val dialogFinishWorkoutBinding = DialogFinishWorkoutBinding.inflate(layoutInflater)
             dialogFinishWorkout.setContentView(dialogFinishWorkoutBinding.root)
 
+            //When finished workout is confirmed
             dialogFinishWorkoutBinding.btnWorkoutFinished.setOnClickListener {
 
                 workoutTimeFinish = System.currentTimeMillis()
@@ -188,10 +190,12 @@ class WorkoutTrainingActivity : AppCompatActivity() {
                 dialogFinishWorkout.dismiss()
             }
 
+            //when finished workout is not confirmed
             dialogFinishWorkoutBinding.btnWorkoutNotFinished.setOnClickListener {
                 dialogFinishWorkout.dismiss()
             }
 
+            //show the dialog
             dialogFinishWorkout.show()
         }
     }
