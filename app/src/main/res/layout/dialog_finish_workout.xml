@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rest_timer_dialog_background"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tvFinishedWorkoutQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Workout finished?"
+        android:textColor="@color/dark_mode_gray_background"
+        android:fontFamily="@font/audiowide"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/buttonsFinishedWorkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFinishedWorkoutQuestion"
+        android:layout_margin="10dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnWorkoutFinished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_light_gray_ripple_background"
+            android:text="YES"
+            android:textSize="16sp"
+            android:textColor="@color/dark_mode_gray_background"
+            android:fontFamily="@font/audiowide"
+            android:layout_weight="0.5"
+            android:layout_margin="5dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnWorkoutNotFinished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_light_gray_ripple_background"
+            android:text="NO"
+            android:textSize="16sp"
+            android:textColor="@color/dark_mode_gray_background"
+            android:fontFamily="@font/audiowide"
+            android:layout_weight="0.5"
+            android:layout_margin="5dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,10 +21,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.calisthenicsworkout.R
-import com.example.calisthenicsworkout.databinding.ActivityWorkoutTrainingBinding
-import com.example.calisthenicsworkout.databinding.DialogOnBackPressedWorkoutBinding
-import com.example.calisthenicsworkout.databinding.DialogRestTimerBinding
-import com.example.calisthenicsworkout.databinding.SetTimerDialogBinding
+import com.example.calisthenicsworkout.databinding.*
 import com.example.calisthenicsworkout.models.DatabasesApp
 import com.example.calisthenicsworkout.models.lastWorkouts.LastWorkoutEntity
 import com.example.calisthenicsworkout.models.workoutReps.NumberOfWorkoutRepsAdapter
@@ -133,53 +130,69 @@ class WorkoutTrainingActivity : AppCompatActivity() {
 
         binding!!.btnWorkoutFinish.setOnClickListener {
 
-            workoutTimeFinish = System.currentTimeMillis()
+            val dialogFinishWorkout = Dialog(this, R.style.Theme_Dialog)
+            dialogFinishWorkout.setCancelable(false)
 
-            workoutDurationInMillis = workoutTimeFinish!! - workoutTimeStart!!
+            val dialogFinishWorkoutBinding = DialogFinishWorkoutBinding.inflate(layoutInflater)
+            dialogFinishWorkout.setContentView(dialogFinishWorkoutBinding.root)
 
-            val intent = Intent(this, FinishedWorkoutActivity::class.java)
-            intent.putExtra(EXTRA_WORKOUT_DURATION_DETAILS, workoutDurationInMillis.toString())
+            dialogFinishWorkoutBinding.btnWorkoutFinished.setOnClickListener {
 
-            val lastWorkoutDao = (application as DatabasesApp).lastWorkoutsDB.lastWorkoutDao()
+                workoutTimeFinish = System.currentTimeMillis()
 
-            var workoutName = ""
+                workoutDurationInMillis = workoutTimeFinish!! - workoutTimeStart!!
 
-            //Set workout name to be entered in LastWorkoutsDatabase
-            when(intentExtraTrainingDetails){
-                "day one" ->{
-                    workoutName = "#1 Day One"
+                val intent = Intent(this, FinishedWorkoutActivity::class.java)
+                intent.putExtra(EXTRA_WORKOUT_DURATION_DETAILS, workoutDurationInMillis.toString())
+
+                val lastWorkoutDao = (application as DatabasesApp).lastWorkoutsDB.lastWorkoutDao()
+
+                var workoutName = ""
+
+                //Set workout name to be entered in LastWorkoutsDatabase
+                when(intentExtraTrainingDetails){
+                    "day one" ->{
+                        workoutName = "#1 Day One"
+                    }
+                    "day two" ->{
+                        workoutName = "#2 Day Two"
+                    }
+                    "day three" ->{
+                        workoutName = "#3 Day Three"
+                    }
                 }
-                "day two" ->{
-                    workoutName = "#2 Day Two"
+
+                //Set workout date to be entered in LastWorkoutsDatabase
+                val workoutDate = "${LocalDate.now().dayOfMonth}/${LocalDate.now().monthValue}/${LocalDate.now().year}"
+
+                //Get workout duration minutes value
+                val workoutDurationMinutes = (workoutDurationInMillis!!/60_000).toBigDecimal().setScale(
+                    1, RoundingMode.HALF_UP).toInt()
+                //Set difference between minutes and seconds- this is a decimal number of type double
+                val secondsDifference = workoutDurationInMillis!!.toDouble()/60_000 - workoutDurationMinutes.toDouble()
+                //Get workout duration seconds value
+                val workoutDurationSeconds = (secondsDifference*60).toBigDecimal().setScale(0, RoundingMode.HALF_UP).toInt()
+
+                //Set workout duration to be entered in LastWorkoutsDatabase
+                val workoutDuration = "$workoutDurationMinutes:$workoutDurationSeconds"
+
+                //insert new finished workout to LastWorkoutsDatabase
+                lifecycleScope.launch {
+                    lastWorkoutDao.insert(LastWorkoutEntity(name = workoutName, date = workoutDate,
+                        duration = workoutDuration))
                 }
-                "day three" ->{
-                    workoutName = "#3 Day Three"
-                }
+
+                startActivity(intent)
+
+                finish()
+                dialogFinishWorkout.dismiss()
             }
 
-            //Set workout date to be entered in LastWorkoutsDatabase
-            val workoutDate = "${LocalDate.now().dayOfMonth}/${LocalDate.now().monthValue}/${LocalDate.now().year}"
-
-            //Get workout duration minutes value
-            val workoutDurationMinutes = (workoutDurationInMillis!!/60_000).toBigDecimal().setScale(
-                1, RoundingMode.HALF_UP).toInt()
-            //Set difference between minutes and seconds- this is a decimal number of type double
-            val secondsDifference = workoutDurationInMillis!!.toDouble()/60_000 - workoutDurationMinutes.toDouble()
-            //Get workout duration seconds value
-            val workoutDurationSeconds = (secondsDifference*60).toBigDecimal().setScale(0, RoundingMode.HALF_UP).toInt()
-
-            //Set workout duration to be entered in LastWorkoutsDatabase
-            val workoutDuration = "$workoutDurationMinutes:$workoutDurationSeconds"
-
-            //insert new finished workout to LastWorkoutsDatabase
-            lifecycleScope.launch {
-                lastWorkoutDao.insert(LastWorkoutEntity(name = workoutName, date = workoutDate,
-                    duration = workoutDuration))
+            dialogFinishWorkoutBinding.btnWorkoutNotFinished.setOnClickListener {
+                dialogFinishWorkout.dismiss()
             }
 
-            startActivity(intent)
-
-            finish()
+            dialogFinishWorkout.show()
         }
     }
 
@@ -512,12 +525,6 @@ class WorkoutTrainingActivity : AppCompatActivity() {
         }
 
         warningDialog.show()
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)// Android version needs to be at least version Android 8
-    private fun getWorkoutInformation(){
-
-
     }
 
     override fun onDestroy() {
