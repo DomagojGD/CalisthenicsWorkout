@@ -28,36 +28,34 @@
 
             <TextView
                 android:id="@+id/tvLevelOne"
-                android:layout_width="325dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Level One"
                 android:textSize="20sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/audiowide"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivExerciseGIF"
-                android:layout_marginTop="50dp"/>
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="20dp"/>
 
             <CheckBox
                 android:id="@+id/cbLevelOne"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
-                app:layout_constraintStart_toEndOf="@id/tvLevelOne"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvLevelOne"
                 android:layout_marginEnd="20dp"/>
 
             <TextView
                 android:id="@+id/tvLevelTwo"
-                android:layout_width="325dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Level Two"
                 android:textSize="20sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/audiowide"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvLevelOne"
                 android:layout_margin="20dp"/>
 
@@ -65,21 +63,19 @@
                 android:id="@+id/cbLevelTwo"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
-                app:layout_constraintStart_toEndOf="@id/tvLevelTwo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvLevelTwo"
                 android:layout_marginEnd="20dp"/>
 
             <TextView
                 android:id="@+id/tvLevelThree"
-                android:layout_width="325dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Level Three"
                 android:textSize="20sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/audiowide"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvLevelTwo"
                 android:layout_margin="20dp"/>
 
@@ -87,7 +83,6 @@
                 android:id="@+id/cbLevelThree"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
-                app:layout_constraintStart_toEndOf="@id/tvLevelThree"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvLevelThree"
                 android:layout_marginEnd="20dp"/>
