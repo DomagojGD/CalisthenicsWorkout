@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
 
         <item name="android:windowActivityTransitions">true</item>
+        <item name="android:navigationBarColor">@color/dark_mode_gray_background</item>
 
     </style>
 

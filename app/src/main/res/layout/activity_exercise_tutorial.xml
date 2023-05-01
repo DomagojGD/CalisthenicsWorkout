@@ -26,6 +26,22 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivExerciseGIF"
+        app:layout_constraintBottom_toTopOf="@id/llTutorialBtns"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/tvLevelOne"
                 android:layout_width="wrap_content"
@@ -35,9 +51,8 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/audiowide"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivExerciseGIF"
-                android:layout_marginTop="50dp"
-                android:layout_marginStart="20dp"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="20dp"/>
 
             <CheckBox
                 android:id="@+id/cbLevelOne"
@@ -87,26 +102,20 @@
                 app:layout_constraintTop_toTopOf="@id/tvLevelThree"
                 android:layout_marginEnd="20dp"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvLevelThree"
-        app:layout_constraintBottom_toTopOf="@id/llTutorialBtns"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
+            <TextView
+                android:id="@+id/tvLevelsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Levels text"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/audiowide"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLevelThree"
+                android:layout_margin="20dp"/>
 
-        <TextView
-            android:id="@+id/tvLevelsText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Levels text"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/audiowide" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
