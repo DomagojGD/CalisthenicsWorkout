@@ -92,7 +92,7 @@ class ExerciseDescriptionActivity : AppCompatActivity() {
                         "Sometimes called the back bend or wheel pose, " +
                                 "this exotic-looking exercise is often overlooked for flashier exercises. " +
                                 "However, it’d be difficult to find a better exercise to train spinal mobility and reverse the effects of sitting. " +
-                                "This incredible exercise strengthens our entire posterior chain and protects"
+                                "This incredible exercise strengthens our entire posterior chain and protects us from injury"
                 }
             }
 
@@ -102,7 +102,7 @@ class ExerciseDescriptionActivity : AppCompatActivity() {
         }
 
         //Start ExercisesDetailsActivity with extra exercise details to know which details should be displayed
-        binding!!.flSeeDetails.setOnClickListener {
+        binding!!.btnSeeDetails.setOnClickListener {
 
                 val intent = Intent(this, ExercisesDetailsActivity::class.java)
 
